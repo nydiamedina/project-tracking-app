@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Tracking App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
 </head>
 <body>
-    <h1>Testing 1,2,3,4!</h1>
+    <h1>Project Tracking App</h1>
 
     <div class="form-container">
         <h3>Add Team</h3>
@@ -23,6 +29,7 @@
     </div>
 
     <div class="form-container">
+        <h3>Add Project</h3>
         <form action="{{ url_for('add_project') }}" method="POST">
             {{ project_form.csrf_token() }}
             {{ project_form.project_name.label }}

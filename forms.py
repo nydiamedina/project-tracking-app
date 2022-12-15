@@ -8,7 +8,7 @@ class TeamForm(FlaskForm):
         "Team name", validators=[DataRequired(), Length(min=4, max=255)]
     )
     team_description = TextAreaField("Team description")
-    submit = SubmitField("submit")
+    submit = SubmitField("Submit")
 
 
 class ProjectForm(FlaskForm):
@@ -18,7 +18,7 @@ class ProjectForm(FlaskForm):
     project_description = TextAreaField("Project description")
     is_completed = BooleanField("Is it completed?")
     team_selection = SelectField("Team")
-    submit = SubmitField("submit")
+    submit = SubmitField("Submit")
 
     def update_teams(self, teams):
         self.team_selection.choices = [(team.team_id, team.team_name) for team in teams]
