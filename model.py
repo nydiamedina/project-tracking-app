@@ -57,7 +57,7 @@ class Team(db.Model):
         self.user_id = user_id
 
         if "team_description" in kwargs:
-            self.last_name = kwargs["team_description"]
+            self.team_description = kwargs["team_description"]
 
 
 class Project(db.Model):

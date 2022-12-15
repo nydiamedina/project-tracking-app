@@ -13,7 +13,6 @@ def home():
     team_form = TeamForm()
     project_form = ProjectForm()
     project_form.update_teams(User.query.get(user_id).teams)
-    print(User.query.get(user_id).teams)
     return render_template("home.html", team_form=team_form, project_form=project_form)
 
 
