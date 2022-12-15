@@ -22,6 +22,18 @@ class User(db.Model):
         db.DateTime, nullable=False, default=datetime.datetime.utcnow
     )
 
+    teams = db.relationship("Team", backref="user", lazy=True)
+
+    def __init__(self, username, password, **kwargs):
+        self.username = username
+        self.password = password
+
+        if "first_name" in kwargs:
+            self.first_name = kwargs["first_name"]
+
+        if "last_name" in kwargs:
+            self.last_name = kwargs["last_name"]
+
 
 class Team(db.Model):
 
@@ -37,6 +49,15 @@ class Team(db.Model):
     updated_at = db.Column(
         db.DateTime, nullable=False, default=datetime.datetime.utcnow
     )
+
+    projects = db.relationship("Project", backref="team", lazy=True)
+
+    def __init__(self, team_name, user_id, **kwargs):
+        self.team_name = team_name
+        self.user_id = user_id
+
+        if "team_description" in kwargs:
+            self.last_name = kwargs["team_description"]
 
 
 class Project(db.Model):
@@ -54,6 +75,14 @@ class Project(db.Model):
     updated_at = db.Column(
         db.DateTime, nullable=False, default=datetime.datetime.utcnow
     )
+
+    def __init__(self, project_name, is_completed, team_id, **kwargs):
+        self.project_name = project_name
+        self.is_completed = is_completed
+        self.team_id = team_id
+
+        if "project_description" in kwargs:
+            self.project_description = kwargs["project_description"]
 
 
 def connect_to_db(app):
