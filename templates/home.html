@@ -15,14 +15,14 @@
   <body>
     <nav
       class="navbar sticky-top navbar-light navbar-expand-lg"
-      style="background-color: #ADD8E6"
+      style="background-color: #add8e6"
     >
       <div class="container-fluid">
-        <a class="navbar-brand mb-0 h1" href="/home">Project Tracking App</a>
+        <a class="navbar-brand mb-0 h1" href="/">Project Tracking App</a>
         <div class="collapse navbar-collapse justify-content-center">
           <div class="navbar-nav">
-            <a class="nav-link px-3" href="/home">Home</a>
-            <a class="nav-link px-3" href="/home">Teams</a>
+            <a class="nav-link px-3" href="/">Home</a>
+            <a class="nav-link px-3" href="/teams">Teams</a>
           </div>
         </div>
       </div>
@@ -44,9 +44,7 @@
             >
             <div class="col-sm-10">{{ team_form.team_description }}</div>
           </div>
-          <button class="btn btn-primary" type="submit">
-            {{ team_form.submit.label }}
-          </button>
+          <button class="btn btn-primary" type="submit">Add Team</button>
         </form>
       </div>
 
@@ -78,9 +76,7 @@
             >
             <div class="col-sm-10">{{ project_form.team_selection }}</div>
           </div>
-          <button class="btn btn-primary" type="submit">
-            {{ project_form.submit.label }}
-          </button>
+          <button class="btn btn-primary" type="submit">Add Project</button>
         </form>
       </div>
     </div>

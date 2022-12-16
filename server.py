@@ -53,6 +53,40 @@ def add_project():
         return redirect(url_for("home"))
 
 
+@app.route("/teams")
+def get_teams():
+    teams = (
+        db.session.query(Team)
+        .filter_by(user_id=user_id)
+        .order_by(Team.team_id.asc())
+        .all()
+    )
+
+    team_forms = []
+
+    for team in teams:
+        team_forms.append(
+            TeamForm(team_name=team.team_name, team_description=team.team_description)
+        )
+
+    return render_template("teams.html", teams=teams, team_forms=team_forms)
+
+
+@app.route("/edit-team/<team_id>", methods=["POST"])
+def edit_team(team_id):
+    team_form = TeamForm()
+
+    if team_form.validate_on_submit():
+        team_to_update = Team.query.filter_by(team_id=team_id).first()
+        team_to_update.team_name = team_form.team_name.data
+        team_to_update.team_description = team_form.team_description.data
+        db.session.add(team_to_update)
+        db.session.commit()
+        return redirect(url_for("get_teams"))
+    else:
+        return redirect(url_for("get_teams"))
+
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(debug=True)
